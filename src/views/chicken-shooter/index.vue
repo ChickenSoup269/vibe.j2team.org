@@ -36,6 +36,7 @@ let timerIntervalId = 0
 let canvasWidth = 0
 let canvasHeight = 0
 let cachedCtx: CanvasRenderingContext2D | null = null
+let bgGradient: CanvasGradient | null = null
 
 const FREEZE_DURATION = 3000
 
@@ -123,10 +124,7 @@ function gameLoop(timestamp: number) {
 function draw(ctx: CanvasRenderingContext2D, timestamp: number) {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 
-  const gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight)
-  gradient.addColorStop(0, '#0c1520')
-  gradient.addColorStop(1, '#162232')
-  ctx.fillStyle = gradient
+  ctx.fillStyle = bgGradient || '#0c1520'
   ctx.fillRect(0, 0, canvasWidth, canvasHeight)
 
   drawStars(ctx)
@@ -316,6 +314,11 @@ function resizeCanvas() {
   canvas.width = canvasWidth
   canvas.height = canvasHeight
   cachedCtx = canvas.getContext('2d')
+  if (cachedCtx) {
+    bgGradient = cachedCtx.createLinearGradient(0, 0, 0, canvasHeight)
+    bgGradient.addColorStop(0, '#0c1520')
+    bgGradient.addColorStop(1, '#162232')
+  }
 
   initStars()
   initGrass()
