@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-vibe.j2team.org — A collaborative vibe coding project by J2TEAM Community with 55+ sub-pages. The homepage acts as a launcher linking to sub-pages, where each community member creates their own page.
+vibe.j2team.org — A collaborative vibe coding project by J2TEAM Community with 90+ sub-apps. The homepage acts as a launcher linking to sub-apps, where each community member creates their own page.
 
 ## Tech Stack
 
@@ -39,7 +39,7 @@ src/
   types/page.ts              # PageMeta & PageInfo interfaces
   data/
     pages-loader.ts          # Auto-discovers views/*/meta.ts via import.meta.glob()
-    categories.ts            # Category definitions (game, tool, fun, learn, spiritual, connect)
+    categories.ts            # Category definitions (game, tool, fun, learn, spiritual, connect, other)
     homepage.ts              # Homepage content data (tech stack, rules, products)
     constants.ts             # Shared constants
   components/
@@ -195,8 +195,8 @@ Apps can import from these directories but are never required to. Each app remai
 
 1. Create a new directory under `src/views/<your-page-name>/`
 2. Add `index.vue` as the main component inside that directory
-3. Add `meta.ts` exporting a `PageMeta` object with: `name`, `description`, `author`, and optionally `facebook` and `category`
-4. Available categories: `game`, `tool`, `fun`, `learn`, `spiritual`, `connect`
+3. Add `meta.ts` exporting a `PageMeta` object with: `name`, `description`, `author`, `category`, and optionally `facebook`
+4. Available categories: `game`, `tool`, `fun`, `learn`, `spiritual`, `connect`, `other`
 5. The route is auto-generated from the folder name — no router changes needed
 
 ## Path Aliases
@@ -225,4 +225,5 @@ Apps can import from these directories but are never required to. Each app remai
 - Oxlint (Rust-based linter, runs before ESLint) — config in `.oxlintrc.json`
 - Oxfmt for formatting — config in `.oxfmtrc.json` (no semicolons, single quotes)
 - Prettier config exists for compatibility (eslint-config-prettier)
-- Pre-commit: `simple-git-hooks` + `lint-staged` runs linters on staged files
+- Commitlint with `@commitlint/config-conventional` — commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) format (e.g., `feat:`, `fix:`, `chore:`)
+- Pre-commit: `simple-git-hooks` + `lint-staged` runs linters on staged files and auto-optimizes images (`.png`, `.jpg`, `.jpeg`, `.webp`) via `sharp`

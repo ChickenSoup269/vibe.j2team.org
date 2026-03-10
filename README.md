@@ -44,7 +44,7 @@ pnpm dev
 1. Fork repo và clone về máy
 2. Tạo branch mới từ `main` (ví dụ: `git checkout -b feat/tên-trang`)
 3. Tạo thư mục mới trong `src/views/<tên-trang>/` với file `index.vue`
-4. Tạo file `meta.ts` trong cùng thư mục để khai báo tên, mô tả và tác giả (route tự động được tạo)
+4. Tạo file `meta.ts` trong cùng thư mục để khai báo tên, mô tả, tác giả và danh mục (route tự động được tạo)
 5. Tạo Pull Request và chờ merge!
 
 Xem trang mẫu: [`src/views/hello-world/`](src/views/hello-world/)
